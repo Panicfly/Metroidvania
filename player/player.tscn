@@ -6,6 +6,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_if77r"]
 size = Vector2(8, 16)
 
+[sub_resource type="Animation" id="Animation_trihk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_ms6sg"]
 resource_name = "idle"
 length = 0.8
@@ -23,8 +38,9 @@ tracks/0/keys = {
 "values": [0, 2, 3, 4]
 }
 
-[sub_resource type="Animation" id="Animation_trihk"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_xw7wb"]
+resource_name = "jump"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -35,7 +51,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [11]
 }
 
 [sub_resource type="Animation" id="Animation_cw2h3"]
@@ -53,22 +69,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [5, 6, 7, 8, 9]
-}
-
-[sub_resource type="Animation" id="Animation_xw7wb"]
-resource_name = "jump"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [11]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uf3rb"]
@@ -96,3 +96,6 @@ shape = SubResource("RectangleShape2D_if77r")
 libraries = {
 "": SubResource("AnimationLibrary_uf3rb")
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -8)
