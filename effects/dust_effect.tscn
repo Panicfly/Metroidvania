@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqf1783io16l8"]
+
+[ext_resource type="Texture2D" uid="uid://doc6njp3fcnk0" path="res://effects/dust_effect.png" id="1_dl6g6"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nnhru"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yltea"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 8.0
+angular_velocity_min = 2.0
+angular_velocity_max = 8.0
+gravity = Vector3(0, 0, 0)
+
+[node name="DustEffect" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_nnhru")
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_yltea")
+texture = ExtResource("1_dl6g6")
+explosiveness = 0.78
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]
