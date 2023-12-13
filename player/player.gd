@@ -14,6 +14,7 @@ const DUST_EFFECT_SCENE = preload("res://effects/dust_effect.tscn")
 @onready var sprite_2d = $Sprite2D
 @onready var coyote_jump_timer = $CoyoteJumpTimer
 @onready var player_blaster = $PlayerBlaster
+@onready var fire_rate_timer = $FireRateTimer
 
 func _physics_process(delta):
 	apply_gravity(delta)
@@ -23,7 +24,8 @@ func _physics_process(delta):
 	else:
 		apply_friction(delta)
 	jump_check()
-	if Input.is_action_just_pressed("fire_bullet"):
+	if Input.is_action_pressed("fire_bullet") and fire_rate_timer.time_left == 0:
+		fire_rate_timer.start()
 		player_blaster.fire_bullet()
 	update_animations(input_axis)
 	var was_on_floor = is_on_floor()
@@ -53,8 +55,8 @@ func jump_check():
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = -jump_force
 	if not is_on_floor():
-		if Input.is_action_just_released("jump") and velocity.y < -jump_force / 2:
-			velocity.y = -jump_force / 2
+		if Input.is_action_just_released("jump") and velocity.y < -jump_force / 2.0:
+			velocity.y = -jump_force / 2.0
 
 func update_animations(input_axis):
 	sprite_2d.scale.x = sign(get_local_mouse_position().x)

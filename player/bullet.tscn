@@ -1,7 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs37blcc7n0vg"]
+[gd_scene load_steps=7 format=3 uid="uid://bs37blcc7n0vg"]
 
 [ext_resource type="PackedScene" uid="uid://n5tuss7kdl7g" path="res://projectile.tscn" id="1_8tjl1"]
 [ext_resource type="Texture2D" uid="uid://c5p35bs074qko" path="res://player/player_bullet.png" id="1_16lml"]
+[ext_resource type="Script" path="res://player/bullet.gd" id="2_jvijw"]
+
+[sub_resource type="Animation" id="Animation_vn6f1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_qadew"]
 resource_name = "fire"
@@ -20,21 +36,6 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_vn6f1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_khqu0"]
 _data = {
 "RESET": SubResource("Animation_vn6f1"),
@@ -42,6 +43,7 @@ _data = {
 }
 
 [node name="Bullet" instance=ExtResource("1_8tjl1")]
+script = ExtResource("2_jvijw")
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="0"]
 position = Vector2(2.38419e-07, 0)
