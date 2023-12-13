@@ -3,12 +3,12 @@ extends CharacterBody2D
 const DUST_EFFECT_SCENE = preload("res://effects/dust_effect.tscn")
 
 #accelaration is high because its mulitplied by delta
-@export var accelaration = 512
-@export var max_velocity = 64
-@export var friction = 256
-@export var gravity = 200
-@export var jump_force = 128
-@export var max_fall_velocity = 160
+@export var accelaration = 600
+@export var max_velocity = 100
+@export var friction = 500
+@export var gravity = 600
+@export var jump_force = 220
+@export var max_fall_velocity = 200
 
 @onready var animation_player = $AnimationPlayer
 @onready var sprite_2d = $Sprite2D
@@ -33,10 +33,7 @@ func _physics_process(delta):
 		coyote_jump_timer.start()
 
 func create_dust_effect():
-	var dust_effect = DUST_EFFECT_SCENE.instantiate()
-	var main = get_tree().current_scene
-	main.add_child(dust_effect)
-	dust_effect.global_position = global_position
+	Utils.instantiate_scene_on_world(DUST_EFFECT_SCENE, global_position)
 
 func is_moving(input_axis):
 	return input_axis != 0

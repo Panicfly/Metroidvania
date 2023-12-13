@@ -102,7 +102,7 @@ floor_snap_length = 2.0
 script = ExtResource("1_ydurp")
 
 [node name="PlayerBlaster" parent="." instance=ExtResource("3_sg4q1")]
-position = Vector2(6, -8)
+position = Vector2(2, -8)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -12)
