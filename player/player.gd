@@ -15,6 +15,7 @@ const DUST_EFFECT_SCENE = preload("res://effects/dust_effect.tscn")
 @onready var coyote_jump_timer = $CoyoteJumpTimer
 @onready var player_blaster = $PlayerBlaster
 @onready var fire_rate_timer = $FireRateTimer
+@onready var drop_timer = $DropTimer
 
 func _physics_process(delta):
 	apply_gravity(delta)
@@ -27,6 +28,10 @@ func _physics_process(delta):
 	if Input.is_action_pressed("fire_bullet") and fire_rate_timer.time_left == 0:
 		fire_rate_timer.start()
 		player_blaster.fire_bullet()
+	#Possibility to jump down through moving plattforms
+	if Input.is_action_pressed("crouch") and Input.is_action_pressed("jump"):
+		set_collision_mask_value(2, false)
+		drop_timer.start()
 	update_animations(input_axis)
 	var was_on_floor = is_on_floor()
 	move_and_slide()
@@ -51,7 +56,7 @@ func apply_friction(delta):
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 
 func jump_check():
-	if is_on_floor() or coyote_jump_timer.time_left > 0.0:
+	if is_on_floor() and not Input.is_action_pressed("crouch") or coyote_jump_timer.time_left > 0.0:
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = -jump_force
 	if not is_on_floor():
@@ -73,4 +78,6 @@ func update_animations(input_axis):
 	
 	if not is_on_floor():
 		animation_player.play("jump")
-	
+
+func _on_drop_timer_timeout():
+	set_collision_mask_value(2, true)
