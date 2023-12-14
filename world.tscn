@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://tkegcwvisi26"]
+[gd_scene load_steps=8 format=3 uid="uid://tkegcwvisi26"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_2j21n"]
 [ext_resource type="PackedScene" uid="uid://bu1nnbag6fy1m" path="res://player/player.tscn" id="1_espgt"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://cjdxdlih5lh11" path="res://world/moving_plattform.tscn" id="4_fgrwy"]
 [ext_resource type="Curve2D" uid="uid://ch5133uf6lud8" path="res://world/up_and_down_path.tres" id="5_gk7tk"]
 [ext_resource type="Curve2D" uid="uid://d1hl4vfvtstba" path="res://world/left_to_right_path.tres" id="6_nvh6d"]
+[ext_resource type="PackedScene" uid="uid://d31qxwqja0ku3" path="res://enemies/walking_enemy.tscn" id="7_uogq1"]
 
 [node name="World" type="Node2D"]
+position = Vector2(-13, 2)
 script = ExtResource("1_2j21n")
 
 [node name="Player" parent="." instance=ExtResource("1_espgt")]
@@ -16,34 +18,32 @@ floor_constant_speed = true
 
 [node name="WorldTileMap" parent="." instance=ExtResource("2_hlyx8")]
 position = Vector2(72, 112)
-layer_0/tile_data = PackedInt32Array(-196614, 0, 3, -196613, 393216, 0, -131077, 0, 2, -131076, 327682, 0, -65540, 0, 1, -65539, 65536, 1, -65538, 131072, 0, -393219, 0, 3, -393218, 393216, 0, -327682, 0, 2, -327681, 65536, 2, -393216, 65536, 3, -393215, 65536, 3, -393214, 65536, 3, -393213, 65536, 3, -393212, 458752, 3, -458748, 262144, 0, -458747, 65536, 3, -458746, 131072, 3, 131069, 393216, 1, 196605, 0, 2, 196606, 65536, 2, 196607, 327680, 3, 131072, 131072, 3, 196617, 131072, 2, 131081, 131072, 1, 65545, 131072, 0, 196616, 65536, 2, 131080, 65536, 1, 65544, 65536, 0, 196615, 65536, 2, 131079, 65536, 1, 65543, 65536, 0, 196614, 65536, 2, 131078, 65536, 1, 65542, 65536, 0, 196613, 65536, 2, 131077, 65536, 1, 65541, 65536, 0, 196612, 65536, 2, 131076, 65536, 1, 65540, 65536, 0, 196611, 0, 2, 131075, 0, 1, 65539, 0, 0, -65525, 131072, 2, -131061, 131072, 1, -196597, 131072, 1, -65526, 65536, 2, -131062, 65536, 1, -196598, 65536, 1, -65527, 0, 2, -131063, 0, 1, -196599, 0, 0, -65529, 131072, 3, -65530, 0, 3, -393207, 131072, 3, -393208, 0, 3, 65549, 196608, 1, 13, 196608, 1, -65523, 196608, 1, -131059, 196608, 0, 327694, 131072, 2, 262158, 131072, 1, 196622, 131072, 1, 131086, 131072, 0, 327693, 65536, 2, 262157, 65536, 1, 196621, 65536, 1, 131085, 524288, 2, 327692, 0, 2, 262156, 0, 1, 196620, 0, 1, 131084, 0, 0, -2, 131072, 1, -3, 65536, 1, -4, 393216, 2, -5, 0, 0, 65531, 0, 2, 65532, 393216, 1, 131068, 0, 2, 65533, 65536, 1, 65534, 327680, 2, 131070, 65536, 1, -262133, 131072, 0, -589820, 0, 3, -589819, 65536, 3, -589818, 131072, 3, -262134, 1, 0, -131075, 393218, 0, -196612, 393218, 0, -393217, 393218, 0, 65535, 131072, 0, 131071, 131072, 1)
+layer_0/tile_data = PackedInt32Array(-196614, 0, 3, -196613, 393216, 0, -131077, 0, 2, -131076, 327682, 0, -65540, 0, 1, -65539, 65536, 1, -65538, 131072, 0, -393219, 0, 3, -393218, 393216, 0, -327682, 0, 2, -327681, 65536, 2, -393216, 65536, 3, -393215, 65536, 3, -393214, 65536, 3, -393213, 65536, 3, -393212, 458752, 3, -458748, 262144, 0, -458747, 65536, 3, -458746, 131072, 3, 131069, 393216, 1, 196605, 0, 2, 196606, 65536, 2, 196607, 327680, 3, 131072, 65536, 3, 196617, 131072, 1, 131081, 131072, 1, 65545, 458752, 2, 196616, 65536, 1, 131080, 65536, 1, 65544, 65536, 0, 196615, 393216, 1, 131079, 65536, 1, 65543, 65536, 0, 196614, 65536, 2, 131078, 65536, 1, 65542, 65536, 0, 196613, 65536, 2, 131077, 65536, 1, 65541, 65536, 0, 196612, 327680, 1, 131076, 65536, 1, 65540, 65536, 0, 196611, 0, 1, 131075, 0, 1, 65539, 0, 0, -65525, 131072, 2, -131061, 131072, 1, -196597, 131072, 1, -65526, 327680, 1, -131062, 65536, 1, -196598, 65536, 1, -65527, 0, 1, -131063, 0, 1, -196599, 0, 0, -65529, 131072, 3, -65530, 0, 3, -393207, 131072, 3, -393208, 0, 3, 65549, 196608, 1, 13, 196608, 1, -65523, 196608, 1, -131059, 196608, 0, 327694, 131072, 2, 262158, 131072, 1, 196622, 131072, 1, 131086, 131072, 0, 327693, 65536, 2, 262157, 65536, 1, 196621, 65536, 1, 131085, 524288, 2, 327692, 0, 2, 262156, 0, 1, 196620, 0, 1, 131084, 0, 0, -2, 131072, 1, -3, 65536, 1, -4, 393216, 2, -5, 0, 0, 65531, 0, 2, 65532, 393216, 1, 131068, 0, 2, 65533, 65536, 1, 65534, 327680, 2, 131070, 65536, 1, -262133, 131072, 0, -589820, 0, 3, -589819, 65536, 3, -589818, 131072, 3, -262134, 1, 0, -131075, 393218, 0, -196612, 393218, 0, -393217, 393218, 0, 65535, 131072, 0, 131071, 131072, 1, 9, 262144, 1, 10, 131072, 2, 262153, 131072, 2, 262152, 65536, 2, 262151, 0, 2, 262147, 393216, 4, 262146, 65536, 3, 327683, 0, 2, 262145, 327680, 0, 262144, 0, 0, 393215, 0, 3, 327680, 393216, 3, 327681, 131072, 2, 327684, 131072, 2, 262148, 131072, 1, 131073, 131072, 3)
 
 [node name="MovingPlattform" parent="." instance=ExtResource("4_fgrwy")]
 position = Vector2(104, 96)
 metadata/_edit_group_ = true
 
 [node name="AnimatableBody2D" parent="MovingPlattform" index="0"]
-position = Vector2(0, 0)
+position = Vector2(0, -24.001)
 
 [node name="Path2D" parent="MovingPlattform" index="2"]
 curve = ExtResource("5_gk7tk")
 
 [node name="PathFollow2D" parent="MovingPlattform/Path2D" index="0"]
-position = Vector2(0, 0)
+position = Vector2(0, -24.001)
 
 [node name="MovingPlattform4" parent="." instance=ExtResource("4_fgrwy")]
 position = Vector2(-8, 0)
-metadata/_edit_group_ = true
 
 [node name="AnimatableBody2D" parent="MovingPlattform4" index="0"]
-position = Vector2(0, 0)
+position = Vector2(0, -24.001)
 
 [node name="Path2D" parent="MovingPlattform4" index="2"]
 curve = ExtResource("5_gk7tk")
 
 [node name="PathFollow2D" parent="MovingPlattform4/Path2D" index="0"]
-position = Vector2(0, 0)
-progress = 0.0
+position = Vector2(0, -24.001)
 
 [node name="MovingPlattform2" parent="." instance=ExtResource("4_fgrwy")]
 position = Vector2(48, -24)
@@ -53,13 +53,16 @@ position = Vector2(288, 16)
 metadata/_edit_group_ = true
 
 [node name="AnimatableBody2D" parent="MovingPlattform3" index="0"]
-position = Vector2(0, 0)
+position = Vector2(8.00397, 0)
 
 [node name="Path2D" parent="MovingPlattform3" index="2"]
 curve = ExtResource("6_nvh6d")
 
 [node name="PathFollow2D" parent="MovingPlattform3/Path2D" index="0"]
-position = Vector2(0, 0)
+position = Vector2(8.00395, 0)
+
+[node name="WalkingEnemy" parent="." instance=ExtResource("7_uogq1")]
+position = Vector2(152, 116)
 
 [editable path="MovingPlattform"]
 [editable path="MovingPlattform4"]
