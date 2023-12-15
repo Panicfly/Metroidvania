@@ -81,3 +81,6 @@ func update_animations(input_axis):
 
 func _on_drop_timer_timeout():
 	set_collision_mask_value(2, true)
+
+func _on_hurtbox_hurt(hitbox, damage):
+	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bs37blcc7n0vg"]
+[gd_scene load_steps=8 format=3 uid="uid://bs37blcc7n0vg"]
 
 [ext_resource type="PackedScene" uid="uid://n5tuss7kdl7g" path="res://projectile.tscn" id="1_8tjl1"]
 [ext_resource type="Texture2D" uid="uid://c5p35bs074qko" path="res://player/player_bullet.png" id="1_16lml"]
@@ -42,6 +42,9 @@ _data = {
 "fire": SubResource("Animation_qadew")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rs37u"]
+size = Vector2(8, 6)
+
 [node name="Bullet" instance=ExtResource("1_8tjl1")]
 script = ExtResource("2_jvijw")
 
@@ -58,3 +61,9 @@ libraries = {
 "": SubResource("AnimationLibrary_khqu0")
 }
 autoplay = "fire"
+
+[node name="Hitbox" parent="." index="3"]
+collision_mask = 35
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_rs37u")
