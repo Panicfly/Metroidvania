@@ -31,7 +31,8 @@ position = Vector2(0, -24.001)
 curve = ExtResource("5_gk7tk")
 
 [node name="PathFollow2D" parent="MovingPlattform/Path2D" index="0"]
-position = Vector2(0, -24.001)
+position = Vector2(0, 0)
+progress = 0.0
 
 [node name="MovingPlattform4" parent="." instance=ExtResource("4_fgrwy")]
 position = Vector2(-8, 0)
@@ -43,7 +44,8 @@ position = Vector2(0, -24.001)
 curve = ExtResource("5_gk7tk")
 
 [node name="PathFollow2D" parent="MovingPlattform4/Path2D" index="0"]
-position = Vector2(0, -24.001)
+position = Vector2(0, 0)
+progress = 0.0
 
 [node name="MovingPlattform2" parent="." instance=ExtResource("4_fgrwy")]
 position = Vector2(48, -24)
@@ -59,7 +61,8 @@ position = Vector2(8.00397, 0)
 curve = ExtResource("6_nvh6d")
 
 [node name="PathFollow2D" parent="MovingPlattform3/Path2D" index="0"]
-position = Vector2(8.00395, 0)
+position = Vector2(0, 0)
+progress = 0.0
 
 [node name="WalkingEnemy" parent="." instance=ExtResource("7_uogq1")]
 position = Vector2(152, 116)

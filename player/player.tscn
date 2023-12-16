@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cu5fc0fx4roob" path="res://player/player.png" id="1_7m2cv"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_ydurp"]
 [ext_resource type="PackedScene" uid="uid://bkm41ag7hn5lp" path="res://player/player_blaster.tscn" id="3_sg4q1"]
-[ext_resource type="Script" path="res://collisions/hurtbox.gd" id="4_myvfl"]
+[ext_resource type="PackedScene" uid="uid://b6siamrktmgr6" path="res://collisions/hurtbox.tscn" id="4_cebh3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_if77r"]
 size = Vector2(8, 14)
@@ -98,8 +98,8 @@ _data = {
 "run": SubResource("Animation_cw2h3")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5ugo"]
-size = Vector2(7, 15)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2yba"]
+size = Vector2(6, 13)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 10
@@ -146,15 +146,13 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" parent="." instance=ExtResource("4_cebh3")]
 collision_layer = 16
-collision_mask = 0
-script = ExtResource("4_myvfl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-0.5, -7.5)
-shape = SubResource("RectangleShape2D_l5ugo")
-debug_color = Color(0.980392, 0, 0.372549, 0.419608)
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_e2yba")
+debug_color = Color(0.945098, 0.184314, 0.384314, 0.419608)
 
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]

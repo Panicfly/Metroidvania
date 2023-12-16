@@ -3,19 +3,19 @@
 [ext_resource type="Script" path="res://enemies/walking_enemy.gd" id="1_mhgo4"]
 [ext_resource type="Texture2D" uid="uid://yxluqyesxhkc" path="res://enemies/walking_enemy.png" id="1_xboag"]
 [ext_resource type="PackedScene" uid="uid://b6siamrktmgr6" path="res://collisions/hurtbox.tscn" id="3_m7yc6"]
-[ext_resource type="Script" path="res://collisions/hitbox.gd" id="4_vqbqv"]
+[ext_resource type="PackedScene" uid="uid://bktrjxldmckxy" path="res://collisions/hitbox.tscn" id="4_g3pa2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4uyu4"]
 size = Vector2(8, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7raqa"]
-size = Vector2(18, 16)
+size = Vector2(12.75, 12)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sphwi"]
-size = Vector2(17, 12)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nlf16"]
+size = Vector2(16.5, 11.875)
 
 [node name="WalkingEnemy" type="CharacterBody2D"]
-collision_layer = 8
+collision_layer = 40
 floor_constant_speed = true
 floor_snap_length = 2.0
 script = ExtResource("1_mhgo4")
@@ -38,18 +38,16 @@ target_position = Vector2(0, 12)
 collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -8)
+position = Vector2(0.375, -6)
 shape = SubResource("RectangleShape2D_7raqa")
 debug_color = Color(0, 0.635294, 0.411765, 0.419608)
 
-[node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 0
+[node name="Hitbox" parent="." instance=ExtResource("4_g3pa2")]
 collision_mask = 16
-script = ExtResource("4_vqbqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-0.5, -10)
-shape = SubResource("RectangleShape2D_sphwi")
-debug_color = Color(0.992157, 0, 0.235294, 0.419608)
+position = Vector2(-0.25, -10.0625)
+shape = SubResource("RectangleShape2D_nlf16")
+debug_color = Color(0.972549, 0, 0.435294, 0.419608)
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
