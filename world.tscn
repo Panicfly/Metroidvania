@@ -25,7 +25,7 @@ position = Vector2(104, 96)
 metadata/_edit_group_ = true
 
 [node name="AnimatableBody2D" parent="MovingPlattform" index="0"]
-position = Vector2(0, -24.001)
+position = Vector2(0, 0)
 
 [node name="Path2D" parent="MovingPlattform" index="2"]
 curve = ExtResource("5_gk7tk")
@@ -38,7 +38,7 @@ progress = 0.0
 position = Vector2(-8, 0)
 
 [node name="AnimatableBody2D" parent="MovingPlattform4" index="0"]
-position = Vector2(0, -24.001)
+position = Vector2(0, 0)
 
 [node name="Path2D" parent="MovingPlattform4" index="2"]
 curve = ExtResource("5_gk7tk")
@@ -55,7 +55,7 @@ position = Vector2(288, 16)
 metadata/_edit_group_ = true
 
 [node name="AnimatableBody2D" parent="MovingPlattform3" index="0"]
-position = Vector2(8.00397, 0)
+position = Vector2(0, 0)
 
 [node name="Path2D" parent="MovingPlattform3" index="2"]
 curve = ExtResource("6_nvh6d")
@@ -66,6 +66,9 @@ progress = 0.0
 
 [node name="WalkingEnemy" parent="." instance=ExtResource("7_uogq1")]
 position = Vector2(152, 116)
+
+[node name="WalkingEnemy2" parent="." instance=ExtResource("7_uogq1")]
+position = Vector2(227, 57)
 
 [editable path="MovingPlattform"]
 [editable path="MovingPlattform4"]
