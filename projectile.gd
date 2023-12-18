@@ -1,6 +1,8 @@
 class_name Projectile
 extends Node2D
 
+const EXPLOSION_EFFECT_SCENE = preload("res://effects/explosion_effect.tscn")
+
 @export var speed = 250
 #Speed and direction of the projectile
 var velocity = Vector2.ZERO
@@ -19,7 +21,9 @@ func _on_hitbox_body_entered(body):
 	var world = get_tree().current_scene
 	var player = world.get_node("Player")
 	if body != player:
+		Utils.instantiate_scene_on_world(EXPLOSION_EFFECT_SCENE, global_position)
 		queue_free()
 	
 func _on_hitbox_area_entered(_area):
+	Utils.instantiate_scene_on_world(EXPLOSION_EFFECT_SCENE, global_position)
 	queue_free()

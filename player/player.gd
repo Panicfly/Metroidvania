@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const DUST_EFFECT_SCENE = preload("res://effects/dust_effect.tscn")
+const JUMP_EFFECT_SCENE = preload("res://effects/jump_effect.tscn")
 
 #accelaration is high because its mulitplied by delta
 @export var accelaration = 600
@@ -60,6 +61,7 @@ func jump_check():
 	if is_on_floor() and not Input.is_action_pressed("crouch") or coyote_jump_timer.time_left > 0.0:
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = -jump_force
+			Utils.instantiate_scene_on_world(JUMP_EFFECT_SCENE, global_position)
 	if not is_on_floor():
 		if Input.is_action_just_released("jump") and velocity.y < -jump_force / 2.0:
 			velocity.y = -jump_force / 2.0
