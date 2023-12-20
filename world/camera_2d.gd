@@ -7,7 +7,7 @@ var shake = 0
 func _ready():
 	Events.add_screenshake.connect(start_screenshake)
 
-func _process(delta):
+func _process(_delta):
 	offset.x = randf_range(-shake, shake)
 	offset.y = randf_range(-shake, shake)
 
