@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://tkegcwvisi26"]
+[gd_scene load_steps=9 format=3 uid="uid://tkegcwvisi26"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_2j21n"]
 [ext_resource type="PackedScene" uid="uid://bu1nnbag6fy1m" path="res://player/player.tscn" id="1_espgt"]
@@ -7,6 +7,7 @@
 [ext_resource type="Curve2D" uid="uid://ch5133uf6lud8" path="res://world/up_and_down_path.tres" id="5_gk7tk"]
 [ext_resource type="Curve2D" uid="uid://d1hl4vfvtstba" path="res://world/left_to_right_path.tres" id="6_nvh6d"]
 [ext_resource type="PackedScene" uid="uid://d31qxwqja0ku3" path="res://enemies/walking_enemy.tscn" id="7_uogq1"]
+[ext_resource type="PackedScene" uid="uid://brmpcq8y4a0qe" path="res://ui/health_bar.tscn" id="8_u07h0"]
 
 [node name="World" type="Node2D"]
 position = Vector2(-13, 2)
@@ -69,6 +70,8 @@ position = Vector2(152, 116)
 
 [node name="WalkingEnemy2" parent="." instance=ExtResource("7_uogq1")]
 position = Vector2(227, 57)
+
+[node name="HealthBar" parent="." instance=ExtResource("8_u07h0")]
 
 [editable path="MovingPlattform"]
 [editable path="MovingPlattform4"]
