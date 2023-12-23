@@ -7,9 +7,12 @@ const JUMP_EFFECT_SCENE = preload("res://effects/jump_effect.tscn")
 @export var accelaration = 600
 @export var max_velocity = 100
 @export var friction = 500
-@export var gravity = 600
+@export var gravity = 650
 @export var jump_force = 220
-@export var max_fall_velocity = 200
+@export var max_fall_velocity = 280
+
+var air_jump = false
+var state = move_state
 
 @onready var animation_player = $AnimationPlayer
 @onready var sprite_2d = $Sprite2D
@@ -25,6 +28,9 @@ func _ready():
 	PlayerStats.no_health.connect(die)
 
 func _physics_process(delta):
+	state.call(delta)
+
+func move_state(delta):
 	apply_gravity(delta)
 	var input_axis = Input.get_axis("move_left", "move_right")
 	if is_moving(input_axis):
@@ -46,6 +52,9 @@ func _physics_process(delta):
 	if just_left_edge:
 		coyote_jump_timer.start()
 
+func wall_slide_state(delta):
+	pass
+
 func create_dust_effect():
 	Utils.instantiate_scene_on_world(DUST_EFFECT_SCENE, global_position)
 
@@ -63,13 +72,24 @@ func apply_friction(delta):
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 
 func jump_check():
+	if is_on_floor():
+		air_jump = true
+	
 	if is_on_floor() and not Input.is_action_pressed("crouch") or coyote_jump_timer.time_left > 0.0:
 		if Input.is_action_just_pressed("jump"):
-			velocity.y = -jump_force
-			Utils.instantiate_scene_on_world(JUMP_EFFECT_SCENE, global_position)
+			jump(jump_force)
 	if not is_on_floor():
 		if Input.is_action_just_released("jump") and velocity.y < -jump_force / 2.0:
 			velocity.y = -jump_force / 2.0
+			
+		#Doublejump Check
+		if Input.is_action_just_pressed("jump") and air_jump:
+			jump(jump_force * 0.8)
+			air_jump = false
+
+func jump(force):
+	velocity.y = -force
+	Utils.instantiate_scene_on_world(JUMP_EFFECT_SCENE, global_position)
 
 func update_animations(input_axis):
 	sprite_2d.scale.x = sign(get_local_mouse_position().x)
