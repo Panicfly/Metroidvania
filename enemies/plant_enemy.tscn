@@ -1,0 +1,104 @@
+[gd_scene load_steps=11 format=3 uid="uid://c8joup51wa0yu"]
+
+[ext_resource type="Texture2D" uid="uid://b3pfb7ep8y0ao" path="res://enemies/plant_enemy.png" id="1_2821b"]
+[ext_resource type="Script" path="res://enemies/plant_enemy.gd" id="1_hj12v"]
+[ext_resource type="PackedScene" uid="uid://b6siamrktmgr6" path="res://collisions/hurtbox.tscn" id="2_e2vgw"]
+[ext_resource type="PackedScene" uid="uid://bktrjxldmckxy" path="res://collisions/hitbox.tscn" id="3_wj5md"]
+[ext_resource type="PackedScene" uid="uid://bkfb4cu45wril" path="res://stats.tscn" id="4_p7ciy"]
+
+[sub_resource type="Animation" id="Animation_x6ft0"]
+resource_name = "attack"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fire_bullet"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_uyki4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_082s2"]
+_data = {
+"RESET": SubResource("Animation_uyki4"),
+"attack": SubResource("Animation_x6ft0")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nto"]
+size = Vector2(14, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oqglp"]
+radius = 5.0
+
+[node name="PlantEnemy" type="Node2D"]
+script = ExtResource("1_hj12v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_2821b")
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_082s2")
+}
+autoplay = "attack"
+
+[node name="BulletSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(0, -9)
+
+[node name="FireDirection" type="Marker2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_e2vgw")]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_f2nto")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_wj5md")]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_oqglp")
+
+[node name="Stats" parent="." instance=ExtResource("4_p7ciy")]
+
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
