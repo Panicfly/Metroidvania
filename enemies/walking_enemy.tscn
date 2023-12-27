@@ -54,5 +54,8 @@ debug_color = Color(0.972549, 0, 0.435294, 0.419608)
 [node name="Stats" parent="." instance=ExtResource("5_oc8gv")]
 max_health = 2
 
+[node name="DeathEffectLocation" type="Marker2D" parent="."]
+position = Vector2(0, -8)
+
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]

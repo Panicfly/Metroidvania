@@ -82,12 +82,10 @@ offset_bottom = 2.0
 
 [node name="PlantEnemy" parent="." instance=ExtResource("9_tie15")]
 position = Vector2(272, 144)
-spread = 0
 
 [node name="PlantEnemy2" parent="." instance=ExtResource("9_tie15")]
 position = Vector2(69, 32)
 rotation = -3.14159
-spread = 0
 
 [editable path="MovingPlattform"]
 [editable path="MovingPlattform4"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqf0kkuhvhf7j"]
+
+[ext_resource type="PackedScene" uid="uid://bqf1783io16l8" path="res://effects/dust_effect.tscn" id="1_e6qu0"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3jjj7"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 14.0
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 8.0
+initial_velocity_max = 16.0
+angular_velocity_min = 2.0
+angular_velocity_max = 8.0
+radial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tsggr"]
+load_path = "res://.godot/imported/dust_effect.png-96bf398ff5c70192c25d755040f8130d.ctex"
+
+[node name="EnemyDeathEffect" instance=ExtResource("1_e6qu0")]
+position = Vector2(0, -8)
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_3jjj7")
+texture = SubResource("CompressedTexture2D_tsggr")
+lifetime = 0.6
+
+[node name="Timer" parent="." index="0"]
+wait_time = 0.5
