@@ -55,7 +55,7 @@ script = ExtResource("1_yb787")
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_3smds")
 autoplay = "default"
-frame_progress = 0.149673
+frame_progress = 0.0663388
 
 [node name="Hurtbox" parent="." instance=ExtResource("2_3arwf")]
 collision_layer = 32

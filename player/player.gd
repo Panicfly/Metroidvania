@@ -67,7 +67,7 @@ func wall_slide_state(delta):
 	wall_jump_check(wall_normal.x)
 	apply_wall_slide_gravity(delta)
 	move_and_slide()
-	wall_detach(delta)
+	wall_detach(delta, wall_normal.x)
 
 func wall_check():
 	if not is_on_floor() and is_on_wall():
@@ -75,11 +75,11 @@ func wall_check():
 		air_jump = true
 		create_dust_effect()
 
-func wall_detach(delta):
-	if Input.is_action_just_pressed("move_right"):
+func wall_detach(delta, wall_axis):
+	if Input.is_action_just_pressed("move_right") and wall_axis == 1:
 		velocity.x = accelaration * delta
 		state = move_state
-	if Input.is_action_just_pressed("move_left"):
+	if Input.is_action_just_pressed("move_left") and wall_axis == -1:
 		velocity.x = -accelaration * delta
 		state = move_state
 		
