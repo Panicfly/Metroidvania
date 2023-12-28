@@ -15,6 +15,8 @@ angular_velocity_min = 2.0
 angular_velocity_max = 8.0
 radial_velocity_max = 10.0
 gravity = Vector3(0, 0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.2
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tsggr"]
 load_path = "res://.godot/imported/dust_effect.png-96bf398ff5c70192c25d755040f8130d.ctex"

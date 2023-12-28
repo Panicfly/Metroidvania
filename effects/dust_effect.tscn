@@ -17,6 +17,8 @@ initial_velocity_max = 8.0
 angular_velocity_min = 2.0
 angular_velocity_max = 8.0
 gravity = Vector3(0, 0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.2
 
 [node name="DustEffect" type="GPUParticles2D"]
 material = SubResource("CanvasItemMaterial_nnhru")
