@@ -1,7 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpq4qwtrqe3wb"]
+[gd_scene load_steps=16 format=3 uid="uid://dpq4qwtrqe3wb"]
 
 [ext_resource type="Texture2D" uid="uid://d1i05ygtq31bq" path="res://enemies/flying_enemy.png" id="1_4b7g3"]
 [ext_resource type="Script" path="res://enemies/flying_enemy.gd" id="1_wh5md"]
+[ext_resource type="PackedScene" uid="uid://b6siamrktmgr6" path="res://collisions/hurtbox.tscn" id="3_sa7td"]
+[ext_resource type="PackedScene" uid="uid://bktrjxldmckxy" path="res://collisions/hitbox.tscn" id="4_ts2qm"]
+[ext_resource type="PackedScene" uid="uid://bkfb4cu45wril" path="res://stats.tscn" id="5_fwyrj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u868s"]
 atlas = ExtResource("1_4b7g3")
@@ -56,16 +59,41 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_n66s7"]
 radius = 4.12311
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pbcir"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o1raf"]
+radius = 4.12311
+
 [node name="FlyingEnemy" type="CharacterBody2D"]
+collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_wh5md")
-acceleration = null
-max_speed = null
-player_path = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2ixpg")
+autoplay = "default"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_n66s7")
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_sa7td")]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_pbcir")
+
+[node name="Hitbox" parent="." instance=ExtResource("4_ts2qm")]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_o1raf")
+debug_color = Color(0.960784, 0, 0.505882, 0.419608)
+
+[node name="Stats" parent="." instance=ExtResource("5_fwyrj")]
+max_health = 2
+
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]

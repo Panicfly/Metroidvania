@@ -1,14 +1,27 @@
 extends CharacterBody2D
 
+const ENEMY_DEATH_EFFECT_SCENE = preload("res://effects/enemy_death_effect.tscn")
+
 @export var acceleration = 100
 @export var max_speed = 40
-@export var player_path : NodePath
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var stats = $Stats
 
 func _physics_process(delta):
-	if player_path is NodePath:
-		var player = get_node(player_path)
-		if player is CharacterBody2D:
-			move_toward_target(player.global_position)
+	var player = MainInstances.player
+	if player is CharacterBody2D:
+		move_toward_position(player.global_position, delta)
+
+func move_toward_position(target_position, delta):
+	var direction = global_position.direction_to(target_position)
+	velocity = velocity.move_toward(direction * max_speed, acceleration * delta)
+	animated_sprite_2d.flip_h = global_position < target_position
 	move_and_slide()
+
+func _on_hurtbox_hurt(hitbox, damage):
+	stats.health -= damage
+
+func _on_stats_no_health():
+	Utils.instantiate_scene_on_world(ENEMY_DEATH_EFFECT_SCENE, global_position)
+	queue_free()

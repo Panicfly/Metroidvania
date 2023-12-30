@@ -18,8 +18,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 func _on_hitbox_body_entered(body):
-	var world = get_tree().current_scene
-	var player = world.get_node("Player")
+	var player = MainInstances.player
 	if body != player:
 		Utils.instantiate_scene_on_world(EXPLOSION_EFFECT_SCENE, global_position)
 		queue_free()

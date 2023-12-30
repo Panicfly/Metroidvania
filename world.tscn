@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://tkegcwvisi26"]
+[gd_scene load_steps=12 format=3 uid="uid://tkegcwvisi26"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_2j21n"]
 [ext_resource type="PackedScene" uid="uid://bu1nnbag6fy1m" path="res://player/player.tscn" id="1_espgt"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://brmpcq8y4a0qe" path="res://ui/health_bar.tscn" id="8_u07h0"]
 [ext_resource type="PackedScene" uid="uid://c8joup51wa0yu" path="res://enemies/plant_enemy.tscn" id="9_tie15"]
 [ext_resource type="PackedScene" uid="uid://bcoh5as3fkuia" path="res://enemies/crawling_enemy.tscn" id="10_4mh3w"]
+[ext_resource type="PackedScene" uid="uid://dpq4qwtrqe3wb" path="res://enemies/flying_enemy.tscn" id="11_comjl"]
 
 [node name="World" type="Node2D"]
 position = Vector2(-13, 2)
@@ -104,6 +105,9 @@ crawling_direction = -1
 [node name="CrawlingEnemy4" parent="." instance=ExtResource("10_4mh3w")]
 position = Vector2(569, 96)
 crawling_direction = -1
+
+[node name="FlyingEnemy" parent="." instance=ExtResource("11_comjl")]
+position = Vector2(360, -12)
 
 [editable path="MovingPlattform"]
 [editable path="MovingPlattform4"]
