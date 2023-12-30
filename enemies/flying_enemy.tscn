@@ -59,6 +59,9 @@ radius = 4.12311
 [node name="FlyingEnemy" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_wh5md")
+acceleration = null
+max_speed = null
+player_path = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2ixpg")
