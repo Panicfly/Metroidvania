@@ -66,7 +66,8 @@ radius = 8.0
 radius = 4.12311
 
 [node name="FlyingEnemy" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 8
+collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_wh5md")
 
@@ -94,6 +95,10 @@ debug_color = Color(0.960784, 0, 0.505882, 0.419608)
 
 [node name="Stats" parent="." instance=ExtResource("5_fwyrj")]
 max_health = 2
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(5.96046e-08, -3)
+scale = Vector2(0.5, 0.6)
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]

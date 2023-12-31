@@ -19,7 +19,7 @@ func move_toward_position(target_position, delta):
 	animated_sprite_2d.flip_h = global_position < target_position
 	move_and_slide()
 
-func _on_hurtbox_hurt(hitbox, damage):
+func _on_hurtbox_hurt(_hitbox, damage):
 	stats.health -= damage
 
 func _on_stats_no_health():
