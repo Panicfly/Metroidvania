@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://dpq4qwtrqe3wb"]
+[gd_scene load_steps=17 format=3 uid="uid://dpq4qwtrqe3wb"]
 
 [ext_resource type="Texture2D" uid="uid://d1i05ygtq31bq" path="res://enemies/flying_enemy.png" id="1_4b7g3"]
 [ext_resource type="Script" path="res://enemies/flying_enemy.gd" id="1_wh5md"]
 [ext_resource type="PackedScene" uid="uid://b6siamrktmgr6" path="res://collisions/hurtbox.tscn" id="3_sa7td"]
 [ext_resource type="PackedScene" uid="uid://bktrjxldmckxy" path="res://collisions/hitbox.tscn" id="4_ts2qm"]
 [ext_resource type="PackedScene" uid="uid://bkfb4cu45wril" path="res://stats.tscn" id="5_fwyrj"]
+[ext_resource type="PackedScene" uid="uid://3p8gqo4jiqf6" path="res://enemies/waypoint_pathfinding.tscn" id="6_qg2o7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u868s"]
 atlas = ExtResource("1_4b7g3")
@@ -96,9 +97,10 @@ debug_color = Color(0.960784, 0, 0.505882, 0.419608)
 [node name="Stats" parent="." instance=ExtResource("5_fwyrj")]
 max_health = 2
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(5.96046e-08, -3)
-scale = Vector2(0.5, 0.6)
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="WaypointPathfinding" parent="." instance=ExtResource("6_qg2o7")]
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
