@@ -107,7 +107,7 @@ func wall_jump_check(wall_axis):
 		state = move_state
 		jump(jump_force * 1.0, false)
 		var wall_jump_effect_position = global_position + Vector2(wall_axis * 3.5, -2)
-		var wall_jump_effect = Utils.instantiate_scene_on_world(WALL_JUMP_EFFECT_SCENE, wall_jump_effect_position)
+		var wall_jump_effect = Utils.instantiate_scene_on_level(WALL_JUMP_EFFECT_SCENE, wall_jump_effect_position)
 		wall_jump_effect.scale.x = wall_axis
 
 func apply_wall_slide_gravity(delta):
@@ -118,7 +118,7 @@ func apply_wall_slide_gravity(delta):
 	#if Input.is_action_pressed("crouch"):
 
 func create_dust_effect():
-	Utils.instantiate_scene_on_world(DUST_EFFECT_SCENE, global_position)
+	Utils.instantiate_scene_on_level(DUST_EFFECT_SCENE, global_position)
 
 func is_moving(input_axis):
 	return input_axis != 0
@@ -155,7 +155,7 @@ func jump_check():
 func jump(force, create_effect = true):
 	velocity.y = -force
 	if create_effect:
-		Utils.instantiate_scene_on_world(JUMP_EFFECT_SCENE, global_position)
+		Utils.instantiate_scene_on_level(JUMP_EFFECT_SCENE, global_position)
 
 func update_animations(input_axis):
 	sprite_2d.scale.x = sign(get_local_mouse_position().x)

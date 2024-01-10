@@ -12,7 +12,7 @@ const ENEMY_DEATH_EFFECT_SCENE = preload("res://effects/enemy_death_effect.tscn"
 @onready var death_effect_location = $DeathEffectLocation
 
 func fire_bullet():
-	var bullet = Utils.instantiate_scene_on_world(ENEMY_BULLET_SCENE, bullet_spawn_point.global_position) as Projectile
+	var bullet = Utils.instantiate_scene_on_level(ENEMY_BULLET_SCENE, bullet_spawn_point.global_position) as Projectile
 	var direction = global_position.direction_to(fire_direction.global_position)
 	var velocity = direction.normalized() * bullet_speed
 	@warning_ignore("integer_division")
@@ -27,5 +27,5 @@ func _on_hurtbox_hurt(_hitbox, damage):
 	stats.health -= damage
 	
 func _on_stats_no_health():
-	Utils.instantiate_scene_on_world(ENEMY_DEATH_EFFECT_SCENE, death_effect_location.global_position)
+	Utils.instantiate_scene_on_level(ENEMY_DEATH_EFFECT_SCENE, death_effect_location.global_position)
 	queue_free()
