@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cclddae0cnklk"]
+[gd_scene load_steps=8 format=3 uid="uid://cclddae0cnklk"]
 
 [ext_resource type="PackedScene" uid="uid://bxsp1wpcc2jcf" path="res://world/world_tile_map.tscn" id="1_bglrm"]
 [ext_resource type="PackedScene" uid="uid://d31qxwqja0ku3" path="res://enemies/walking_enemy.tscn" id="2_f2oyf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://bdxf6di27yjhv" path="res://world/two_three.tres" id="4_6y3mp"]
 [ext_resource type="Resource" uid="uid://dloxe2pq0gmp2" path="res://world/one_two.tres" id="4_dp5ht"]
 [ext_resource type="PackedScene" uid="uid://cf6d7vynr557q" path="res://world/camera_limits.tscn" id="6_irvm2"]
+[ext_resource type="PackedScene" uid="uid://c8p0mnbhbj3bh" path="res://player/missile_powerup.tscn" id="7_m2jal"]
 
 [node name="Level2" type="Node2D"]
 
@@ -30,3 +31,6 @@ offset_left = -340.0
 offset_top = -104.0
 offset_right = 561.0
 offset_bottom = 352.0
+
+[node name="MissilePowerup" parent="." instance=ExtResource("7_m2jal")]
+position = Vector2(-275, 177)

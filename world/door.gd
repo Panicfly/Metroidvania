@@ -26,7 +26,6 @@ func _physics_process(_delta):
 		#var direction = get_direction()
 		Events.door_entered.emit(self)
 		#if player_access_direction == direction:
-			#print("Door entered")
 			#Events.door_entered.emit(self)
 
 func _on_timer_timeout():
