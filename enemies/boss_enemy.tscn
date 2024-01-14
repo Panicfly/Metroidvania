@@ -1,10 +1,100 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfu8adl3jsvvt"]
+[gd_scene load_steps=14 format=3 uid="uid://cfu8adl3jsvvt"]
 
 [ext_resource type="Script" path="res://enemies/boss_enemy.gd" id="1_pgelr"]
 [ext_resource type="Texture2D" uid="uid://bvggjf5j1wr8j" path="res://enemies/boss_enemy_body.png" id="2_14rmq"]
 [ext_resource type="Texture2D" uid="uid://bfcwibqm6ydm8" path="res://enemies/boss_enemy_wing.png" id="3_ilm0f"]
 [ext_resource type="Texture2D" uid="uid://c3gcuv5hcbxig" path="res://enemies/boss_enemy_head.png" id="3_va5ly"]
 [ext_resource type="Texture2D" uid="uid://bay3lu8next75" path="res://enemies/boss_enemy_leg.png" id="4_mppst"]
+[ext_resource type="PackedScene" uid="uid://bkfb4cu45wril" path="res://stats.tscn" id="6_ucv7e"]
+[ext_resource type="PackedScene" uid="uid://b6siamrktmgr6" path="res://collisions/hurtbox.tscn" id="7_7o1ud"]
+[ext_resource type="PackedScene" uid="uid://bktrjxldmckxy" path="res://collisions/hitbox.tscn" id="8_1c8fu"]
+
+[sub_resource type="Animation" id="Animation_fh7uv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 13)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/LeftWing:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.785398]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/RightWing:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.785398]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/UpperLeftLeg:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/LowerLeftLeg:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.261799]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/UpperRightLeg:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/LowerRightLeg:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.261799]
+}
 
 [sub_resource type="Animation" id="Animation_36shj"]
 resource_name = "fly"
@@ -95,93 +185,6 @@ tracks/6/keys = {
 "values": [0.261799, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_fh7uv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 13)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Body/LeftWing:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.785398]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Body/RightWing:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.785398]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Body/UpperLeftLeg:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Body/LowerLeftLeg:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.261799]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Body/UpperRightLeg:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Body/LowerRightLeg:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.261799]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qm7o0"]
 _data = {
 "RESET": SubResource("Animation_fh7uv"),
@@ -191,8 +194,10 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_myg52"]
 radius = 18.0
 
-[node name="BossEnemy" type="CharacterBody2D"]
-motion_mode = 1
+[sub_resource type="CircleShape2D" id="CircleShape2D_8dul1"]
+radius = 14.0
+
+[node name="BossEnemy" type="Node2D"]
 script = ExtResource("1_pgelr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -249,6 +254,45 @@ texture = ExtResource("4_mppst")
 offset = Vector2(8, 8)
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hurtbox" parent="Body" instance=ExtResource("7_7o1ud")]
+position = Vector2(0, -13.3333)
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hurtbox"]
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_myg52")
+
+[node name="Hitbox" parent="Body" instance=ExtResource("8_1c8fu")]
+position = Vector2(0, -13.3333)
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hitbox"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_8dul1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/Hitbox"]
+polygon = PackedVector2Array(-8, 16, -8, 24, -2, 30, -2, 34, 2, 34, 2, 30, 7, 24, 8, 22, 8, 16)
+
+[node name="Stats" parent="." instance=ExtResource("6_ucv7e")]
+max_health = 4
+
+[node name="StingerShootingTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="StingerPivotPoint" type="Marker2D" parent="."]
+position = Vector2(0, 5)
+
+[node name="Muzzle" type="Marker2D" parent="StingerPivotPoint"]
+position = Vector2(15, 0)
+
+[connection signal="hurt" from="Body/Hurtbox" to="." method="_on_hurtbox_hurt"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="timeout" from="StingerShootingTimer" to="." method="_on_stinger_shooting_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
