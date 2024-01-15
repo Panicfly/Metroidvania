@@ -274,14 +274,14 @@ shape = SubResource("CircleShape2D_8dul1")
 polygon = PackedVector2Array(-8, 16, -8, 24, -2, 30, -2, 34, 2, 34, 2, 30, 7, 24, 8, 22, 8, 16)
 
 [node name="Stats" parent="." instance=ExtResource("6_ucv7e")]
-max_health = 4
+max_health = 200
 
 [node name="StingerShootingTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 autostart = true
 
-[node name="AttackTimer" type="Timer" parent="."]
+[node name="StateTimer" type="Timer" parent="."]
 wait_time = 4.0
 one_shot = true
 autostart = true
@@ -295,4 +295,3 @@ position = Vector2(15, 0)
 [connection signal="hurt" from="Body/Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
 [connection signal="timeout" from="StingerShootingTimer" to="." method="_on_stinger_shooting_timer_timeout"]
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
