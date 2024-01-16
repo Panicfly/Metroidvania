@@ -1,6 +1,8 @@
 extends Node2D
 
 const STINGER_SCENE = preload("res://enemies/stinger.tscn")
+const MISSILE_POWERUP_SCENE = preload("res://player/missile_powerup.tscn")
+const ENEMY_DEATH_EFFECT_SCENE = preload("res://effects/enemy_death_effect.tscn")
 
 @export var acceleration = 200
 @export var max_speed = 600
@@ -29,6 +31,10 @@ func get_state_init():
 	state_init = false
 	return state_was
 
+func _ready():
+	var freed = WorldStash.retrieve_data("bee_boss", "freed")
+	if freed: queue_free()
+
 func _process(delta):
 	state.call(delta)
 
@@ -44,7 +50,7 @@ func rush_state(delta):
 	velocity = velocity.move_toward(direction * max_speed, acceleration * delta)
 	move(delta)
 
-func shooting_state(delta):
+func shooting_state(_delta):
 	if state_init:
 		state_timer.start(randf_range(3.0, 6.0))
 		state_timer.timeout.connect(set_state.bind(recenter_state), CONNECT_ONE_SHOT)
@@ -55,7 +61,7 @@ func shooting_state(delta):
 		stinger.rotation = stinger_pivot_point.rotation
 		stinger.update_velocity()
 
-func recenter_state(delta):
+func recenter_state(_delta):
 	#Error Message target_is empty if the markes are not assigned
 	assert(not targets.is_empty())
 	if state_init:
@@ -64,7 +70,7 @@ func recenter_state(delta):
 		#A tween is a process which has only to be called once and not every process frame. It does his job and stops
 		var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		#Object of Change in this case Self = Boss Node, Attribut of change, to what it should get changed to, the time for the change
-		tween.tween_property(self, "global_position", center_node.global_position, 1.0)
+		tween.tween_property(self, "global_position", center_node.global_position, 2.0)
 		await tween.finished
 		state_timer.start(0.5)
 		await state_timer.timeout
@@ -87,3 +93,6 @@ func _on_hurtbox_hurt(_hitbox, damage):
 
 func _on_stats_no_health():
 	queue_free()
+	WorldStash.stash_data("bee_boss", "freed", true)
+	Utils.instantiate_scene_on_level(MISSILE_POWERUP_SCENE, global_position)
+	Utils.instantiate_scene_on_level(ENEMY_DEATH_EFFECT_SCENE, global_position)

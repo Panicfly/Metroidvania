@@ -274,7 +274,7 @@ shape = SubResource("CircleShape2D_8dul1")
 polygon = PackedVector2Array(-8, 16, -8, 24, -2, 30, -2, 34, 2, 34, 2, 30, 7, 24, 8, 22, 8, 16)
 
 [node name="Stats" parent="." instance=ExtResource("6_ucv7e")]
-max_health = 200
+max_health = 10
 
 [node name="StingerShootingTimer" type="Timer" parent="."]
 wait_time = 0.1
