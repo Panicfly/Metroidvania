@@ -9,6 +9,7 @@ func _ready():
 	if freed: queue_free()
 
 func pick_up():
+	Sound.play(Sound.powerup, 1.0, -10.0)
 	var id = WorldStash.get_id(self)
 	WorldStash.stash_data(id, "freed", true)
 	queue_free()

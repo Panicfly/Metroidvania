@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqf0kkuhvhf7j"]
+[gd_scene load_steps=5 format=3 uid="uid://dqf0kkuhvhf7j"]
 
 [ext_resource type="PackedScene" uid="uid://bqf1783io16l8" path="res://effects/dust_effect.tscn" id="1_e6qu0"]
+[ext_resource type="Script" path="res://effects/enemy_death_effect.gd" id="2_tets5"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3jjj7"]
 particle_flag_disable_z = true
@@ -27,6 +28,7 @@ amount = 24
 process_material = SubResource("ParticleProcessMaterial_3jjj7")
 texture = SubResource("CompressedTexture2D_tsggr")
 lifetime = 0.6
+script = ExtResource("2_tets5")
 
 [node name="Timer" parent="." index="0"]
 wait_time = 0.5
