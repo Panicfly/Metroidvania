@@ -103,7 +103,7 @@ func wall_detach(delta, wall_axis):
 
 func wall_jump_check(wall_axis):
 	if Input.is_action_just_pressed("jump"):
-		Sound.play(Sound.jump, randf_range(0.9, 1.2), -5.0)
+		Sound.play(Sound.jump, randf_range(0.9, 1.2), -10.0)
 		velocity.x = wall_axis * max_velocity
 		state = move_state
 		jump(jump_force * 1.0, false)
@@ -155,7 +155,7 @@ func jump_check():
 			air_jump = false
 
 func jump(force, create_effect = true):
-	Sound.play(Sound.jump, randf_range(0.9, 1.2), -5.0)
+	Sound.play(Sound.jump, randf_range(0.9, 1.2), -10.0)
 	velocity.y = -force
 	if create_effect:
 		Utils.instantiate_scene_on_level(JUMP_EFFECT_SCENE, global_position)
@@ -184,7 +184,7 @@ func _on_drop_timer_timeout():
 	set_collision_mask_value(2, true)
 
 func _on_hurtbox_hurt(_hitbox, _damage):
-	Sound.play(Sound.hurt, 1.0, -5.0)
+	Sound.play(Sound.hurt, 1.0, -10.0)
 	Events.add_screenshake.emit(3, 0.25)
 	PlayerStats.health -= 1
 	hurtbox.is_invincible = true

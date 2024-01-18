@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch7b725ch0ct7"]
+
+[ext_resource type="Script" path="res://music_and_sounds/music.gd" id="1_0nqj0"]
+[ext_resource type="AudioStream" uid="uid://b83yshj202wvc" path="res://music_and_sounds/music.ogg" id="2_os0at"]
+
+[node name="Music" type="Node"]
+script = ExtResource("1_0nqj0")
+theme = ExtResource("2_os0at")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0
+bus = &"Music"
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

@@ -35,6 +35,7 @@ offset_bottom = 253.0
 metadata/_edit_lock_ = true
 
 [node name="BossEnemy" parent="." instance=ExtResource("6_bx5sf")]
+z_index = 1
 position = Vector2(27, 161)
 targets = Array[NodePath]([NodePath("../BossTarget"), NodePath("../BossTarget2"), NodePath("../BossTarget3"), NodePath("../BossTarget4"), NodePath("../BossTarget5"), NodePath("../BossTarget6")])
 
