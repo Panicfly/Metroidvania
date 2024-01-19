@@ -3,6 +3,9 @@ extends Node2D
 
 @onready var level: = $Level1
 
+func _enter_tree():
+	MainInstances.world = self
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	RenderingServer.set_default_clear_color(Color.BLACK)
@@ -11,6 +14,15 @@ func _ready():
 	#await get_tree().create_timer(1.0).timeout
 	#await Music.fade_music(15.0)
 	#Music.play_music(Music.theme)
+
+func _exit_tree():
+	MainInstances.world = null
+
+func _process(_delta):
+	if Input.is_action_just_pressed("save"):
+		SaveHandler.save_game()
+	if Input.is_action_just_pressed("load"):
+		SaveHandler.load_game()
 
 func change_level(door : Door):
 	var player = MainInstances.player as Player

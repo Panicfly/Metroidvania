@@ -2,8 +2,6 @@ class_name Powerup
 extends Area2D
 
 func _ready():
-	#Wait a single frame before it runs the code so world.level is loaded
-	await get_tree().process_frame
 	var id = WorldStash.get_id(self)
 	var freed = WorldStash.retrieve_data(id, "freed")
 	if freed: queue_free()

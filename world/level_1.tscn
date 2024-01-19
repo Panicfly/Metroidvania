@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://c6ff3y6wwqhs"]
+[gd_scene load_steps=15 format=3 uid="uid://c6ff3y6wwqhs"]
 
 [ext_resource type="PackedScene" uid="uid://bxsp1wpcc2jcf" path="res://world/world_tile_map.tscn" id="1_0t3ww"]
+[ext_resource type="Script" path="res://world/level.gd" id="1_vccvb"]
 [ext_resource type="PackedScene" uid="uid://cjdxdlih5lh11" path="res://world/moving_plattform.tscn" id="2_tmf5o"]
 [ext_resource type="Curve2D" uid="uid://ch5133uf6lud8" path="res://world/up_and_down_path.tres" id="3_o0tsm"]
 [ext_resource type="Curve2D" uid="uid://d1hl4vfvtstba" path="res://world/left_to_right_path.tres" id="4_aq5p4"]
@@ -15,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cf6d7vynr557q" path="res://world/camera_limits.tscn" id="13_pk0yq"]
 
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_vccvb")
 
 [node name="WorldTileMap" parent="." instance=ExtResource("1_0t3ww")]
 position = Vector2(72, 112)

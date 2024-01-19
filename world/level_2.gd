@@ -1,4 +1,4 @@
-extends Node2D
+extends Level
 
 @onready var bricks = $Bricks
 @onready var room_enter_trigger = $RoomEnterTrigger

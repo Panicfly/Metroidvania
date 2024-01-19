@@ -1,0 +1,1 @@
+{"bee_boss":{"freed":true},"level":{"level_path":"res://world/level_3.tscn"}}

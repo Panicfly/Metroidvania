@@ -4,13 +4,12 @@ extends Node
 var data = {}
 
 func get_id(node):
-	var world = get_tree().current_scene
-	var level = world.level
+	var level = MainInstances.level
 	return level.name + "_" + node.name + "_" + str(node.global_position)
 	#Example Level_2_MissilePowerup_32,16
 
 func stash_data(id, key, value):
-	data[id] = {}
+	if not data.has(id): data[id] = {}
 	data[id][key] = value
 	#print(data)
 
