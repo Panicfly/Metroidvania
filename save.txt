@@ -1,1 +1,1 @@
-{"bee_boss":{"freed":true},"level":{"level_path":"res://world/level_3.tscn"}}
+{"bee_boss":{"freed":true},"level":{"level_path":"res://world/level_2.tscn"},"player":{"player_location_x":53.9436798095703,"player_location_y":241.813171386719}}

@@ -15,14 +15,22 @@ func _ready():
 	#await Music.fade_music(15.0)
 	#Music.play_music(Music.theme)
 
-func _exit_tree():
-	MainInstances.world = null
-
 func _process(_delta):
 	if Input.is_action_just_pressed("save"):
 		SaveHandler.save_game()
 	if Input.is_action_just_pressed("load"):
 		SaveHandler.load_game()
+
+func _exit_tree():
+	MainInstances.world = null
+
+func load_level(file_path):
+	level.queue_free()
+	level.name = level.name+"OLD"
+	var LevelScene = load(file_path)
+	var new_level = LevelScene.instantiate()
+	add_child(new_level)
+	level = new_level
 
 func change_level(door : Door):
 	var player = MainInstances.player as Player
