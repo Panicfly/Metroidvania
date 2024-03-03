@@ -41,9 +41,13 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_released("zoom_in"):
 		var zoom_value = camera_2d.zoom.x + 0.1
+		if zoom_value == 0:
+			zoom_value = 0.1
 		camera_2d.zoom = Vector2(zoom_value, zoom_value)
 	if Input.is_action_just_released("zoom_out"):
 		var zoom_value = camera_2d.zoom.x - 0.1
+		if zoom_value == 0:
+			zoom_value = -0.1
 		camera_2d.zoom = Vector2(zoom_value, zoom_value)
 	
 	if Input.is_action_pressed("fire_bullet") and fire_rate_timer.time_left == 0:
