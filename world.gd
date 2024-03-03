@@ -1,3 +1,4 @@
+#@author Konstantin Schmitt, HeartBeast
 class_name World
 extends Node2D
 
@@ -5,7 +6,6 @@ extends Node2D
 
 func _enter_tree():
 	MainInstances.world = self
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	RenderingServer.set_default_clear_color(Color.BLACK)

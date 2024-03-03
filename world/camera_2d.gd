@@ -3,6 +3,7 @@ extends Camera2D
 var shake = 0
 
 @onready var timer = $Timer
+@onready var camera_2d = $"."
 
 func _ready():
 	Events.add_screenshake.connect(start_screenshake)
