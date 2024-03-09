@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cf6d7vynr557q" path="res://world/camera_limits.tscn" id="4_bk5p4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3qijs"]
-seed = 3
+seed = 6
 frequency = 0.0882
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e6ffh"]
@@ -34,7 +34,8 @@ new_level_path = "res://world/level_2.tscn"
 connection = ExtResource("3_d7e7y")
 
 [node name="CameraLimits" parent="." instance=ExtResource("4_bk5p4")]
-offset_left = -280.0
-offset_top = -256.0
-offset_right = 368.0
-offset_bottom = 384.0
+custom_minimum_size = Vector2(200, 200)
+offset_left = -1070.0
+offset_top = -594.0
+offset_right = 1066.0
+offset_bottom = 587.0

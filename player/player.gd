@@ -15,6 +15,7 @@ const WALL_JUMP_EFFECT_SCENE = preload("res://effects/wall_jump_effect.tscn")
 @export var max_fall_velocity = 280
 @export var max_wall_slide_speed = 128
 @export var wall_slide_speed = 42
+@export var zoom_change = 0.1
 
 var air_jump = false
 var state = move_state
@@ -40,14 +41,19 @@ func _physics_process(delta):
 	state.call(delta)
 	
 	if Input.is_action_just_released("zoom_in"):
-		var zoom_value = camera_2d.zoom.x + 0.1
-		if zoom_value == 0:
-			zoom_value = 0.1
+		var zoom_value = camera_2d.zoom.x + zoom_change
+		if zoom_value >= 2.10:
+			zoom_value = 2.09
+		print(zoom_value)
 		camera_2d.zoom = Vector2(zoom_value, zoom_value)
 	if Input.is_action_just_released("zoom_out"):
-		var zoom_value = camera_2d.zoom.x - 0.1
-		if zoom_value == 0:
-			zoom_value = -0.1
+		var zoom_value = camera_2d.zoom.x - zoom_change
+		if zoom_value <= 0.10:
+			zoom_value = 0.11
+		print(zoom_value)
+		camera_2d.zoom = Vector2(zoom_value, zoom_value)
+	if Input.is_action_just_pressed("zoom_reset"):
+		var zoom_value = 1.0
 		camera_2d.zoom = Vector2(zoom_value, zoom_value)
 	
 	if Input.is_action_pressed("fire_bullet") and fire_rate_timer.time_left == 0:
