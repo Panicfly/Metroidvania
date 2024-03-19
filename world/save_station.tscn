@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://cibg17ex0apjk"]
+
+[ext_resource type="Texture2D" uid="uid://drcfdlatofe10" path="res://world/save_station.png" id="1_k40y6"]
+[ext_resource type="Script" path="res://world/save_station.gd" id="1_s6jip"]
+[ext_resource type="Texture2D" uid="uid://cqfqtjxwn2g75" path="res://ui/white_square.png" id="3_h782w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxfjl"]
+size = Vector2(16, 20)
+
+[sub_resource type="Animation" id="Animation_1mkoq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WhiteSpaceSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1.25)]
+}
+
+[sub_resource type="Animation" id="Animation_56wrb"]
+resource_name = "saving"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WhiteSpaceSprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 1.25), Vector2(1, 1.25), Vector2(0, 1.25)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_30rcs"]
+_data = {
+"RESET": SubResource("Animation_1mkoq"),
+"saving": SubResource("Animation_56wrb")
+}
+
+[node name="SaveStation" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_s6jip")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = ExtResource("1_k40y6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-13, 0, -10, -3, 10, -3, 13, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_cxfjl")
+
+[node name="WhiteSpaceSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -14)
+scale = Vector2(1e-05, 1.25)
+texture = ExtResource("3_h782w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_30rcs")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -6,20 +6,25 @@ extends Node2D
 
 func _enter_tree():
 	MainInstances.world = self
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	Events.door_entered.connect(change_level)
+	Events.player_died.connect(game_over)
 	Music.play_music(Music.theme, 114)
+	if SaveHandler.is_loading:
+		SaveHandler.load_game()
+		SaveHandler.is_loading = false
 	#await get_tree().create_timer(1.0).timeout
 	#await Music.fade_music(15.0)
 	#Music.play_music(Music.theme)
 
-func _process(_delta):
-	if Input.is_action_just_pressed("save"):
-		SaveHandler.save_game()
-	if Input.is_action_just_pressed("load"):
-		SaveHandler.load_game()
+#func _process(_delta):
+	#if Input.is_action_just_pressed("save"):
+		#SaveHandler.save_game()
+	#if Input.is_action_just_pressed("load"):
+		#SaveHandler.load_game()
 
 func _exit_tree():
 	MainInstances.world = null
@@ -50,3 +55,7 @@ func change_level(door : Door):
 		var yoffset = player.global_position.y - door.global_position.y
 		#Offset for correcting the position of the player when entering through doors
 		player.global_position = found_door.global_position + Vector2(0, yoffset)
+
+func game_over():
+	await get_tree().create_timer(1.2).timeout
+	get_tree().change_scene_to_file("res://menus/game_over_menu.tscn")

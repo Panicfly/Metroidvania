@@ -1,1 +1,1 @@
-{"bee_boss":{"freed":true},"level":{"level_path":"res://world/level_2.tscn"},"player":{"player_location_x":53.9436798095703,"player_location_y":241.813171386719}}
+{"Level2_MissilePowerup_(86, 178)":{"freed":true},"bee_boss":{"freed":true},"level":{"level_path":"res://world/level_1.tscn"},"player":{"max_health":4,"max_missiles":4,"player_location_x":536.5625,"player_location_y":30.8131561279297}}

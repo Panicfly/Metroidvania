@@ -17,5 +17,8 @@ func _on_room_enter_trigger_trigger_room_entered():
 		room_enter_trigger.trigger_active = false
 
 func _on_boss_enemy_tree_exited():
-	brick_4.queue_free()
-	brick_5.queue_free()
+	if is_instance_valid(brick_4):
+		brick_4.queue_free()
+	if is_instance_valid(brick_5):
+		brick_5.queue_free()
+	return

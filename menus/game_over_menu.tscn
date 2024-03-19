@@ -1,17 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bincie26drh4"]
+[gd_scene load_steps=2 format=3 uid="uid://b8hiyh7o4ovmn"]
 
-[ext_resource type="Script" path="res://menus/pause_menu.gd" id="1_uk7ub"]
+[ext_resource type="Script" path="res://menus/game_over_menu.gd" id="1_2i0hi"]
 
-[node name="PauseMenu" type="ColorRect"]
-process_mode = 3
-z_index = 10
+[node name="GameOverMenu" type="ColorRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
-script = ExtResource("1_uk7ub")
+script = ExtResource("1_2i0hi")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -27,25 +25,19 @@ layout_mode = 2
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-text = "Game Paused"
+text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Resume" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Load" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(64, 16)
 layout_mode = 2
-text = "Resume"
-
-[node name="MainMenu" type="Button" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(64, 16)
-layout_mode = 2
-text = "Main Menu"
+text = "Load Game"
 
 [node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(64, 16)
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
