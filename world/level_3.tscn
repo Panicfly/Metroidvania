@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cf6d7vynr557q" path="res://world/camera_limits.tscn" id="4_bk5p4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3qijs"]
-seed = 6
+seed = 4
 frequency = 0.0882
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e6ffh"]
