@@ -18,10 +18,6 @@ func fire_bullet():
 	@warning_ignore("integer_division")
 	velocity = velocity.rotated(randf_range(-deg_to_rad(spread / 2), deg_to_rad(spread / 2)))
 	bullet.velocity = velocity
-	#bullet.rotation = direction.angle()
-	#bullet.rotate(randf_range(-deg_to_rad(spread / 2), deg_to_rad(spread / 2)))
-	#bullet.speed = bullet_speed
-	#bullet.update_velocity()
 
 func _on_hurtbox_hurt(_hitbox, damage):
 	stats.health -= damage

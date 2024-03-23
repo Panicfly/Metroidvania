@@ -47,7 +47,7 @@ _data = {
 [node name="MovingPlattform" type="Node2D"]
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
-position = Vector2(64, -55.899)
+position = Vector2(0, -64)
 collision_layer = 2
 collision_mask = 0
 
@@ -69,8 +69,7 @@ speed_scale = 0.9
 curve = ExtResource("2_bu4e0")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(64, -55.899)
-progress = 72.0
+position = Vector2(0, -64)
 rotates = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]

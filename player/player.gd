@@ -133,7 +133,6 @@ func apply_wall_slide_gravity(delta):
 	if Input.is_action_pressed("crouch"):
 		slide_speed = max_wall_slide_speed
 	velocity.y = move_toward(velocity.y, slide_speed, gravity * delta)
-	#if Input.is_action_pressed("crouch"):
 
 func create_dust_effect():
 	Sound.play(Sound.step, randf_range(0.9, 1.2), -18.0)
@@ -163,6 +162,7 @@ func jump_check():
 		if Input.is_action_just_pressed("jump"):
 			jump(jump_force)
 	if not is_on_floor():
+		#Half-height jumps
 		if Input.is_action_just_released("jump") and velocity.y < -jump_force / 2.0:
 			velocity.y = -jump_force / 2.0
 			
@@ -202,12 +202,11 @@ func die():
 func _on_drop_timer_timeout():
 	set_collision_mask_value(2, true)
 
-func _on_hurtbox_hurt(_hitbox, _damage):
+func _on_hurtbox_hurt(_hitbox, damage):
 	Sound.play(Sound.hurt, 1.0, -10.0)
 	Events.add_screenshake.emit(3, 0.25)
-	PlayerStats.health -= 1
+	PlayerStats.health -= damage
 	hurtbox.is_invincible = true
 	blinking_animation_player.play("blink")
 	await blinking_animation_player.animation_finished
-	#await get_tree().create_timer(1.0).timeout
 	hurtbox.is_invincible = false

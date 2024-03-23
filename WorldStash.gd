@@ -11,7 +11,6 @@ func get_id(node):
 func stash_data(id, key, value):
 	if not data.has(id): data[id] = {}
 	data[id][key] = value
-	#print(data)
 
 func retrieve_data(id, key):
 	if not data.has(id): return

@@ -49,11 +49,11 @@ func change_level(door : Door):
 	var doors = get_tree().get_nodes_in_group("doors")
 	for found_door in doors:
 		#If the door found is the door we came through we don't want it and continue
-		#We also we check if the door connections match
 		if found_door == door: continue
+		#if the custom ressource door.connection are not matching it should contine
 		if found_door.connection != door.connection: continue
-		var yoffset = player.global_position.y - door.global_position.y
 		#Offset for correcting the position of the player when entering through doors
+		var yoffset = player.global_position.y - door.global_position.y
 		player.global_position = found_door.global_position + Vector2(0, yoffset)
 
 func game_over():

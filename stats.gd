@@ -2,7 +2,7 @@ class_name Stats
 extends Node
 
 @export var max_health = 3 : set = set_max_health
-#@onready helps to load the correct changed max_health for the health var 
+#@onready helps to load the correct changed max_health for the health bar 
 @onready var health = max_health : set = set_health
 
 signal no_health

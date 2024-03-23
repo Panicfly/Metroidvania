@@ -8,6 +8,7 @@ var save_path = TEST_PATH
 var is_loading = false
 
 func save_game():
+	var start = Time.get_ticks_usec()
 	WorldStash.stash_data("level", "level_path", MainInstances.level.scene_file_path)
 	WorldStash.stash_data("player", "player_location_x", MainInstances.player.global_position.x)
 	WorldStash.stash_data("player", "player_location_y", MainInstances.player.global_position.y)
@@ -18,6 +19,9 @@ func save_game():
 	var world_stash_data_string = JSON.stringify(WorldStash.data)
 	save_file.store_string(world_stash_data_string)
 	save_file.close()
+	var end = Time.get_ticks_usec()
+	var save_time = (end-start)/1000000.0
+	print("Save Function Time:", save_time)
 
 func load_game():
 	var save_file = FileAccess.open(save_path, FileAccess.READ)

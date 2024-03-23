@@ -18,15 +18,16 @@ func _physics_process(_delta):
 	else:
 		if not waypoints.is_empty():
 			pathfinding_next_postition = waypoints.front()
-			
+			#Fills the waypoints array with the global position of the player if it cannot see the player from the last waypoint
 			if not can_see_target(waypoints.back()):
 				waypoints.append(target.global_position)
 				
-			#Removes waypoint when at it
-			if global_position.distance_to(waypoints.front()) <= 8:
+			#Removes waypoint when close to it
+			if global_position.distance_to(waypoints.front()) <= waypoint_buffer_distance:
 				waypoints.pop_front()
 				
 		else:
+			#if the waypoints are empty the first waypoint is created by the global position of the player
 			if not can_see_target(global_position):
 				waypoints.append(target.global_position)
 

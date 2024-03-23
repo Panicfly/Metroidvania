@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca46ux8tjy4ac"]
+
+[ext_resource type="TileSet" uid="uid://x2htkcjyr41e" path="res://data/tileSet.tres" id="1_wgpdo"]
+[ext_resource type="PackedScene" uid="uid://bu1nnbag6fy1m" path="res://player/player.tscn" id="2_pj8fa"]
+
+[node name="TestFlatLevel" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_wgpdo")
+format = 2
+layer_0/tile_data = PackedInt32Array(-7, 262144, 3, -6, 65536, 3, -5, 65536, 3, -4, 65536, 3, -3, 65536, 3, -2, 65536, 3, -1, 65536, 3, -65536, 65536, 3, -65535, 65536, 3, -65534, 65536, 3, -65533, 65536, 3, -65532, 65536, 3, -65531, 65536, 3, -65530, 458752, 3, -327687, 196608, 0, -262151, 196608, 1, -196615, 196608, 1, -131079, 196608, 1, -65543, 196608, 1, -393210, 196608, 0, -327674, 196608, 1, -262138, 196608, 1, -196602, 196608, 1, -131066, 196608, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_pj8fa")]
+position = Vector2(0, -16)
