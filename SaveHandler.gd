@@ -4,7 +4,7 @@ extends Node
 const TEST_PATH = "res://save.txt"
 const PRODUCTION_PATH = "user://planetwalker_save.save"
 
-var save_path = TEST_PATH
+var save_path = PRODUCTION_PATH
 var is_loading = false
 
 func save_game():

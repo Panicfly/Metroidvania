@@ -1,6 +1,6 @@
 extends GutTest
 
-var level = load("res://test/resoruces/test_flat_level.tscn")
+var level = load("res://test/ressource/test_flat_level.tscn")
 
 var _level = null
 var _player = null
@@ -22,10 +22,14 @@ func test_verify_setup():
 	assert_true(_player.is_on_floor(), "Player is on the floor")
 
 func test_player_jump():
-	if _player.is_on_floor():
-		_sender.action_down("jump")
-		await (_sender.idle)
+	_player.jump(220, true)
+	await get_tree().create_timer(.5).timeout
 	assert_true(not _player.is_on_floor(), "Player jumped sucessfully")
+
+func test_player_walks_left():
+	_sender.action_down("move_left").hold_for(2)
+	await(_sender.idle)
+	assert_true(_player.position.x < 0)
 
 func test_player_takes_damage():
 	PlayerStats.health = 4
